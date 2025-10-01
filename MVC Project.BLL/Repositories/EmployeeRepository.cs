@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace MVC_Project.BLL.Repositories
 {
-    public class DepartmentRepository : GenericRepository<Department> ,IDepartmentRepository
+    public class EmployeeRepository : GenericRepository<Employee>, IEmployeeRepository
     {
-        public DepartmentRepository(MVC_ProjectDbContext context) : base (context)
+        public EmployeeRepository(MVC_ProjectDbContext context) : base(context)
         {
             
         }

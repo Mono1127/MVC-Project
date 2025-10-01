@@ -9,6 +9,8 @@ namespace MVC_Project.PL.Dtos
         [Required(ErrorMessage = "Name is Required ")]
         public string Name { get; set; }
 
+        [Required(ErrorMessage = "CreateAt is Required ")]
+
         public DateTime CreateAt { get; set; }
     }
 }

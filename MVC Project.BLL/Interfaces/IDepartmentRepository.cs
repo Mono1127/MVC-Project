@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace MVC_Project.BLL.Interfaces
 {
-    public interface IDepartmentRepository
+    public interface IDepartmentRepository :IGenericRepository<Department>
     {
-        IEnumerable<Department> GetAll();
-        Department? Get(int id);
-        int Add(Department models);
-        int Update(Department models);
-        int Delete(Department models);
+        //IEnumerable<Department> GetAll();
+        //Department? Get(int id);
+        //int Add(Department models);
+        //int Update(Department models);
+        //int Delete(Department models);
 
     }
 }
