@@ -46,8 +46,75 @@ namespace MVC_Project.PL.Controllers
            return View(model);
         }
 
+        [HttpGet]
+        public IActionResult Details(int? id,string viewName = "Details" )
+        {
+            if (id == null) return BadRequest("Invalid Id");
+
+            var department= _repository.Get(id.Value);
+            if (department == null) return NotFound();
+            return View(viewName, department);
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int? id)
+        {
+            //if (id == null ) return BadRequest("Invalid Id");
+
+            //var department = _repository.Get(id.Value);
+            //if (department == null) return NotFound();
+
+            return Details(id,"Edit");
+        }
+
+        [HttpPost]
+        public IActionResult Edit([FromRoute] int id,Department department)
+        {
+            if (ModelState.IsValid)
+            {
+                if (id == department.Id)
+                {
+                    var count = _repository.Update(department);
+
+                    if (count > 0)
+                    {
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
+            }
+            return View(department);
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int? id)
+        {
+            //if (id == null) return BadRequest("Invalid Id");
+
+            //var department = _repository.Get(id.Value);
+
+            //if (department == null) return NotFound();
+
+            return Details(id,"Delete");
+        }
 
 
+        [HttpPost]
+        public IActionResult Delete([FromRoute] int id, Department department)
+        {
+            if (ModelState.IsValid)
+            {
+                if (id == department.Id)
+                {
+                    var count = _repository.Delete(department);
+
+                    if (count > 0)
+                    {
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
+            }
+            return View(department);
+        }
 
     }
 }

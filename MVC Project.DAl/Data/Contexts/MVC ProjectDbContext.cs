@@ -26,6 +26,7 @@ namespace MVC_Project.DAl.Data.Contexts
         //    optionsBuilder.UseSqlServer("Server = .; Database = MVC Project; Trusted_Connection = True; TrustServerCertificate = True ");
 
         //}
-           public DbSet<Department> departments { get; set; }
+        public DbSet<Department> departments { get; set; }
+        public DbSet <Employee>  employees   { get; set; }
     }
 }
