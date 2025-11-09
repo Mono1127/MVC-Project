@@ -1,3 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using MVC_Project.BLL.Interfaces;
+using MVC_Project.BLL.Repositories;
+using MVC_Project.DAl.Data.Contexts;
+
 namespace MVC_Project.PL
 {
     public class Program
@@ -8,6 +14,13 @@ namespace MVC_Project.PL
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            builder.Services.AddDbContext<MVC_ProjectDbContext>(options => 
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+            });
 
             var app = builder.Build();
 
@@ -24,7 +37,7 @@ namespace MVC_Project.PL
 
             app.UseRouting();
 
-            app.UseAuthorization();
+           
 
             app.MapControllerRoute(
                 name: "default",
